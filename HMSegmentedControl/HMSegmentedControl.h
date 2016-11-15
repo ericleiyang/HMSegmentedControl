@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, HMSegmentedControlSelectionStyle) {
 typedef NS_ENUM(NSInteger, HMSegmentedControlSelectionIndicatorLocation) {
     HMSegmentedControlSelectionIndicatorLocationUp,
     HMSegmentedControlSelectionIndicatorLocationDown,
-	HMSegmentedControlSelectionIndicatorLocationNone // No selection indicator
+    HMSegmentedControlSelectionIndicatorLocationNone // No selection indicator
 };
 
 typedef NS_ENUM(NSInteger, HMSegmentedControlSegmentWidthStyle) {
@@ -46,7 +46,12 @@ enum {
 typedef NS_ENUM(NSInteger, HMSegmentedControlType) {
     HMSegmentedControlTypeText,
     HMSegmentedControlTypeImages,
-	HMSegmentedControlTypeTextImages
+    HMSegmentedControlTypeTextImages
+};
+
+typedef NS_ENUM(NSInteger, HMSegmentedControlTextPosition) {
+    HMSegmentedControlTextPositionTop,
+    HMSegmentedControlTextPositionBottom
 };
 
 @interface HMSegmentedControl : UIControl
@@ -89,18 +94,11 @@ typedef NS_ENUM(NSInteger, HMSegmentedControlType) {
 @property (nonatomic, strong) UIColor *backgroundColor UI_APPEARANCE_SELECTOR;
 
 /**
- Color for the selection indicator stripe
+ Color for the selection indicator stripe/box
  
  Default is `R:52, G:181, B:229`
  */
 @property (nonatomic, strong) UIColor *selectionIndicatorColor UI_APPEARANCE_SELECTOR;
-
-/**
- Color for the selection indicator box
- 
- Default is selectionIndicatorColor
- */
-@property (nonatomic, strong) UIColor *selectionIndicatorBoxColor UI_APPEARANCE_SELECTOR;
 
 /**
  Color for the vertical divider between segments.
@@ -129,6 +127,13 @@ typedef NS_ENUM(NSInteger, HMSegmentedControlType) {
  Default is `HMSegmentedControlTypeText`
  */
 @property (nonatomic, assign) HMSegmentedControlType type;
+
+/**
+ Specifies the text position to the image.
+ 
+ Default is `.Top`, only works for `.TextImages` type.
+ */
+@property (nonatomic, assign) HMSegmentedControlTextPosition textPosition;
 
 /**
  Specifies the style of the selection indicator.
@@ -208,9 +213,9 @@ typedef NS_ENUM(NSInteger, HMSegmentedControlType) {
  When HMSegmentedControlSelectionIndicatorLocationDown is selected, top edge insets are not used
  
  Defaults are top: 0.0f
-             left: 0.0f
-           bottom: 0.0f
-            right: 0.0f
+ left: 0.0f
+ bottom: 0.0f
+ right: 0.0f
  */
 @property (nonatomic, readwrite) UIEdgeInsets selectionIndicatorEdgeInsets;
 
